@@ -14,5 +14,5 @@ jobs:
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.key }}" > "$HOME/.ssh/id_rsa"
       - run: chmod 600 "$HOME/.ssh/id_rsa"
-      - run: rsync -e "ssh -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no" --archive --compress --delete --exclude=".env" --exclude="/vendor/*" . ${{ secrets.user }}@${{ secrets.host }}:${{ secrets.path }}
+      - run: rsync -e "ssh -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no" --archive --compress --delete --exclude-from="exclude_rsync.txt" . ${{ secrets.user }}@${{ secrets.host }}:${{ secrets.path }}
       - run: ssh -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.user }}@${{ secrets.host }} 'sudo chmod -R o+w ${{ secrets.path }}/storage && sudo chmod -R 777 ${{ secrets.path }}/bootstrap/cache'
