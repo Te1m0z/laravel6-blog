@@ -15,4 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/**
+ *      Namespace*
+ * route -- Blog -------------
+ *       |    \- sub Route    |
+ *       |     \- sub Route   |
+ *       ---------------------
+ */
+Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function() {
+    Route::resource('posts', 'PostController')->names('blog.posts');
+});
+
 Route::resource('/rest', 'RestTestController')->names('restTest');
