@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,7 +41,6 @@ $groupData = [
 ];
 
 Route::group($groupData, function() {
-
     $categoriesMethods = ['index', 'edit', 'store', 'update', 'create'];
     Route::resource('categories', 'CategoryController')
         ->only($categoriesMethods)
