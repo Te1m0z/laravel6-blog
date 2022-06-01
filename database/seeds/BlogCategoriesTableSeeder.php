@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class BlogCategoriesTableSeeder extends Seeder
@@ -18,7 +19,9 @@ class BlogCategoriesTableSeeder extends Seeder
         $categories[] = [
             'title' => $cName,
             'slug' => str_slug($cName),
-            'parent_id' => 0
+            'parent_id' => 0,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ];
 
         for ($i = 1; $i <= 10; $i++) {
@@ -28,7 +31,9 @@ class BlogCategoriesTableSeeder extends Seeder
             $categories[] = [
                 'title' => $cName,
                 'slug' => str_slug($cName),
-                'parent_id' => $parentId 
+                'parent_id' => $parentId,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ];
         }
 
