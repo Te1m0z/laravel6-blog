@@ -1,7 +1,3 @@
-@php
-    /** @var \App\Models\BlogCategory $item */
-@endphp
-
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
@@ -20,11 +16,9 @@
                             <input
                                 type="text"
                                 name="title"
-                                value="{{ $item->title }}"
+                                value="{{ old('title', $item->title) }}"
                                 id="title"
-                                class="form-control"
-                                required
-                            >
+                                class="form-control"                            >
                         </div>
 
                         <div class="form-group">
@@ -47,15 +41,17 @@
                                 placeholder="Выберите категорию"
                                 required
                             >
-                                @foreach ($categoryList as $categoryOption)
-                                    <option value="{{ $categoryOption->id }}"
-                                        @if ($categoryOption->id == $item->parent_id)
-                                            selected
-                                        @endif
-                                    >
-                                        {{ $categoryOption->id }}. {{ $categoryOption->title }}
-                                    </option>
-                                @endforeach
+                                @isset ($categoryList)
+                                    @foreach ($categoryList as $categoryOption)
+                                        <option value="{{ $categoryOption->id }}"
+                                            @if ($categoryOption->id == $item->parent_id)
+                                                selected
+                                            @endif
+                                        >
+                                            {{ $categoryOption->id }}. {{ $categoryOption->title }}
+                                        </option>
+                                    @endforeach
+                                @endisset
                             </select>
                         </div>
 
@@ -66,7 +62,8 @@
                                 id="description"
                                 class="form-control"
                                 rows="3"
-                            >{{ old('description', $item->description) }}</textarea>
+                                value="{{ old('description', $item->description) }}"
+                            ></textarea>
                         </div>
 
                     </div>

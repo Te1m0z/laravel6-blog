@@ -2,8 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form method="POST" action="{{ route('blog.admin.categories.update', $item->id) }}">
-            @method('PATCH')
+        <form method="POST" action="{{ route('blog.admin.categories.store') }}">
             @csrf
 
             @if ($errors->any())
