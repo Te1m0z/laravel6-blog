@@ -47,8 +47,5 @@ Route::group($groupData, function() {
         ->names('blog.admin.categories');
 });
 
-//Route::resource('/rest', 'RestTestController')->names('restTest');
-
-
 
 
